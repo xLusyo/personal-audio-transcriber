@@ -1,0 +1,29 @@
+{
+  "name": "meeting-notes",
+  "version": "1.0.0",
+  "description": "Private macOS meeting notes from system audio and microphone",
+  "main": "src/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "pack": "electron-builder --mac dir",
+    "dist": "electron-builder --mac dmg"
+  },
+  "devDependencies": { "electron": "^43.0.0", "electron-builder": "^26.0.12" },
+  "build": {
+    "appId": "local.meetingnotes.app",
+    "productName": "Meeting Notes",
+    "files": ["src/**/*", "assets/**/*", "package.json"],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg",
+      "extendInfo": {
+        "LSUIElement": true,
+        "NSMicrophoneUsageDescription": "Record your voice for local meeting notes.",
+        "NSAudioCaptureUsageDescription": "Record meeting audio playing on your Mac.",
+        "NSScreenCaptureUsageDescription": "Access system audio for meeting recordings. No screen video is saved."
+      }
+    }
+  }
+}

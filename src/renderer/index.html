@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self'; media-src 'self' blob:">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meeting Notes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <div class="eyebrow">YOUR MAC · YOUR NOTES</div>
+    <h1>Leave with clarity.</h1>
+    <p class="intro">Capture the conversation. Keep the decisions.<br>Know what comes next.</p>
+    <section class="recording-card">
+      <div class="status-heading"><span id="indicator"></span><span id="state">Ready</span><time id="timer">00:00</time></div>
+      <p id="status" role="status" aria-live="polite">Ready to record</p>
+      <button id="start" class="primary">Start Recording</button>
+      <button id="stop" class="primary stop" hidden>Stop Recording</button>
+      <p class="capture-label">System audio + microphone · audio only</p>
+    </section>
+    <div class="actions">
+      <button id="folder">Open notes folder ↗</button>
+      <button id="note" disabled>Open last note ↗</button>
+      <button id="retry">Retry saved audio ↻</button>
+    </div>
+    <p class="privacy">No accounts. No telemetry. Files stay on your Mac.<br>Configured APIs receive audio or transcripts.</p>
+    <p id="config"></p>
+  </main>
+  <script src="recorder.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

@@ -20,14 +20,34 @@
       <p class="capture-label">System audio + microphone · audio only</p>
     </section>
     <div class="actions">
-      <button id="folder">Open notes folder ↗</button>
-      <button id="note" disabled>Open last note ↗</button>
-      <button id="retry">Retry saved audio ↻</button>
+      <button id="folder">Notes folder <span aria-hidden="true">↗</span></button>
+      <button id="note" disabled>Last note <span aria-hidden="true">↗</span></button>
+      <button id="retry">Retry saved audio <span aria-hidden="true">↻</span></button>
     </div>
+    <details class="api-settings">
+      <summary>
+        <span class="settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="4"></circle><path d="m11 12 9 9m-3-3 3-3m-6 0 3-3"></path></svg></span>
+        <span class="settings-heading"><strong>API key settings</strong><small>Connect your preferred AI provider</small></span>
+      </summary>
+      <div class="settings-content">
+        <form id="api-key-form">
+          <fieldset id="api-key-fields">
+            <label for="api-provider">Provider</label>
+            <select id="api-provider"><option value="anthropic">Anthropic (Claude)</option><option value="openai">OpenAI</option><option value="groq">Groq</option></select>
+            <label for="api-key">API key</label>
+            <input id="api-key" type="password" autocomplete="off" spellcheck="false" required placeholder="Enter a new API key">
+            <button class="primary" type="submit">Save API key</button>
+          </fieldset>
+        </form>
+        <p id="api-key-status" role="status" aria-live="polite"></p>
+        <p class="settings-help">Your key is saved on this Mac. Provider usage charges apply. Claude uses local Whisper for audio; provider preferences in your configuration still apply.</p>
+      </div>
+    </details>
     <p class="privacy">No accounts. No telemetry. Files stay on your Mac.<br>Configured APIs receive audio or transcripts.</p>
     <p id="config"></p>
   </main>
   <script src="recorder.js"></script>
+  <script src="api-key-settings.js"></script>
   <script src="ui.js"></script>
 </body>
 </html>

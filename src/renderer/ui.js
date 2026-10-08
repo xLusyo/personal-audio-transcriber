@@ -20,6 +20,7 @@ function updateStatus({ state, message, lastNote }) {
   stop.hidden = state !== 'recording';
   stop.disabled = state !== 'recording';
   retry.disabled = busy;
+  document.getElementById('api-key-fields').disabled = busy;
   document.getElementById('note').disabled = !lastNote;
 }
 

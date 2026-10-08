@@ -32,7 +32,7 @@ Open `dist/mac-arm64/Meeting Notes.app` on Apple Silicon, or `dist/mac/Meeting N
 ~/Library/Application Support/meeting-notes/.env
 ```
 
-Create that directory and copy your edited `.env` there. The app window also shows the exact config path. Configuration is reloaded each time you start a recording or retry processing. `.env` is excluded from the app bundle and version control.
+Use **API key settings** in the app to choose Anthropic, OpenAI, or Groq and save a key. Keys are stored in this local `.env` file with owner-only permissions and are never displayed back in the window. Existing provider choices are preserved; the panel shows the active transcription and notes providers. Keys apply to the next recording or retry. For other configuration, create that directory and copy your edited `.env` there. The app window also shows the exact config path. Configuration is reloaded each time you start a recording or retry processing. `.env` is excluded from the app bundle and version control.
 
 ```sh
 mkdir -p "$HOME/Library/Application Support/meeting-notes"

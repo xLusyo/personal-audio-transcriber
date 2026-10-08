@@ -2,6 +2,7 @@ const { app, BrowserWindow, Tray, Menu, nativeImage, ipcMain, desktopCapturer, s
 const path = require('node:path');
 const fs = require('node:fs/promises');
 const { loadConfig } = require('./config');
+const { getApiKeySettings, saveApiKey } = require('./api-key-settings');
 const { validateRecordingSetup } = require('./setup');
 const { createRecording } = require('./storage');
 const { processRecording } = require('./pipeline');
@@ -82,6 +83,11 @@ async function finishRecording() {
 }
 
 function registerHandlers() {
+  handle('get-api-key-settings', () => getApiKeySettings(envPath));
+  handle('save-api-key', async (provider, key) => {
+    if (isBusy()) throw new Error('Wait for the current meeting to finish before changing API keys.');
+    return saveApiKey(envPath, provider, key);
+  });
   handle('get-status', () => ({ state, message: status, lastNote, envPath }));
   handle('start-recording', async () => {
     if (isBusy()) throw new Error('A meeting is already recording or processing.');
@@ -151,7 +157,7 @@ else {
     }
     app.dock.hide();
     window = new BrowserWindow({
-      width: 460, height: 540, show: false, resizable: false,
+      width: 460, height: 650, show: false, resizable: false,
       title: 'Meeting Notes', backgroundColor: '#f5f3ed',
       webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, backgroundThrottling: false },
     });

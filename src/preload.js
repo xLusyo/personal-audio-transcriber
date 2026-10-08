@@ -1,5 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('meetingNotes', {
+  getApiKeySettings: () => ipcRenderer.invoke('get-api-key-settings'),
+  saveApiKey: (provider, key) => ipcRenderer.invoke('save-api-key', provider, key),
   getStatus: () => ipcRenderer.invoke('get-status'),
   start: () => ipcRenderer.invoke('start-recording'),
   started: () => ipcRenderer.invoke('capture-started'),
